@@ -7,18 +7,13 @@ class MunicipesController < ApplicationController
         render json: @municipes
     end
 
-    def new
-        @municipe = Municipe.new
-        @municipe.address.build
-    end
-
-
     def show
         render json: @municipe
     end
 
     def create
         @municipe = Municipe.new(municipe_params)
+        @municipe.address.build
 
         if @municipe.save
           render json: @municipe, status: :created, location: @municipe
